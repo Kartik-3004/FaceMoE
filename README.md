@@ -27,22 +27,23 @@ This repository contains the FaceMoE training and evaluation code (Mixture-of-Ex
    The training scripts are written to work with PyTorch distributed launch (torchrun). Below are example commands used in this repository.
 
    - Multi-GPU training (8 GPUs):
-
-	   CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
-	   torchrun --nproc_per_node=8 train.py configs/wf4m.py
-
+	```	
+	CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 train.py configs/wf4m.py
+	```
+ 
 	 Or to run the FC or full training variants (examples already used in experiments):
-
-	   CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
-	   torchrun --nproc_per_node=8 train_fc.py configs/tinyface_ft_fc.py
-
-	   CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
-	   torchrun --nproc_per_node=8 train_full.py configs/tinyface_ft_full.py
+	```	
+	CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 train_fc.py configs/tinyface_ft_fc.py
+	```
+ 	```	
+	CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 train_full.py configs/tinyface_ft_full.py
+  	```	
 
    - Single-GPU debugging / small runs (not distributed):
-
-	   CUDA_VISIBLE_DEVICES=0 python train.py configs/wf4m.py
-
+	```	
+	CUDA_VISIBLE_DEVICES=0 python train.py configs/wf4m.py
+	```
+ 
    Notes:
    - The training scripts read a single positional argument: the path to a Python config in `configs/`.
    - The training code uses PyTorch distributed internals. For single-process runs the code falls back to a local process group.
@@ -52,36 +53,39 @@ This repository contains the FaceMoE training and evaluation code (Mixture-of-Ex
    Several evaluation scripts are provided under `validation_*`. Example commands from `test.sh` (adjust paths and flags for your environment):
 
    - HQ validation example:
-
-	   CUDA_VISIBLE_DEVICES=0 python validation_hq/validate_hq.py \
-		   --model_load_path /path/to/FaceMoE/weights/your_model/model.pt \
-		   --model_type swin_moe \
-		   --batch_size 1400 \
-		   --num_experts 3 \
-		   --k 2 \
-		   --image_size 120
+	```	
+   CUDA_VISIBLE_DEVICES=0 python validation_hq/validate_hq.py \
+	   --model_load_path /path/to/FaceMoE/weights/your_model/model.pt \
+	   --model_type swin_moe \
+	   --batch_size 1400 \
+	   --num_experts 3 \
+	   --k 2 \
+	   --image_size 120
+ 	```
 
    - Low-resolution / tinyface validation example:
-
-	   CUDA_VISIBLE_DEVICES=0 python validation_lq/validate_tinyface.py \
-		   --model_load_path /path/to/FaceMoE/weights/your_model/model.pt \
-		   --model_type swin_moe \
-		   --batch_size 1200 \
-		   --num_experts 3 \
-		   --k 2 \
-		   --image_size 120
-
+	```	
+   CUDA_VISIBLE_DEVICES=0 python validation_lq/validate_tinyface.py \
+	   --model_load_path /path/to/FaceMoE/weights/your_model/model.pt \
+	   --model_type swin_moe \
+	   --batch_size 1200 \
+	   --num_experts 3 \
+	   --k 2 \
+	   --image_size 120
+	```
+ 
    - IJB evaluation example (IJBB/IJBC):
-
-	   CUDA_VISIBLE_DEVICES=0 python validation_ijb/eval_ijb.py \
-		   --model_load_path /path/to/FaceMoE/weights/your_model/model.pt \
-		   --data_root /path/to/data/ijb/IJBB/ \
-		   --model_type swin_moe \
-		   --batch-size 1024 \
-		   --num_experts 3 \
-		   --k 2 \
-		   --target IJBB
-
+	```	
+   CUDA_VISIBLE_DEVICES=0 python validation_ijb/eval_ijb.py \
+	   --model_load_path /path/to/FaceMoE/weights/your_model/model.pt \
+	   --data_root /path/to/data/ijb/IJBB/ \
+	   --model_type swin_moe \
+	   --batch-size 1024 \
+	   --num_experts 3 \
+	   --k 2 \
+	   --target IJBB
+	```
+ 
    Notes:
    - Each validation script exposes flags for the model path, data root, batch size, num_experts, k (top-k routing), and image size.
 
@@ -116,9 +120,9 @@ During training the scripts save per-rank checkpoints like `checkpoint_gpu_{rank
 1. Prepare dataset(s) and update a config file in `configs/`.
 2. Create environment and install requirements.
 3. Launch training on 8 GPUs (example):
-
-   CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
-   torchrun --nproc_per_node=8 train.py configs/wf4m.py
+	```	
+   CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 train.py configs/wf4m.py
+ 	```	
 
 4. After a model is saved, validate with a validation script (adjust model and data paths):
 
