@@ -8,11 +8,10 @@
 Johns Hopkins University
 
 <a href=''><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
-<a href=''><img src=''></a>
 
 </div>
 
-Official implementation of **[FaceMoE : Mixture of Experts for Low-Resolution Face Recognition]()**.
+Official implementation of **[FaceMoE : Mixture of Experts for Low-Resolution Face Recognition](https://kartik-3004.github.io/portfolio/papers/FaceMOE.pdf)**.
 <hr />
 
 # FaceMoE
