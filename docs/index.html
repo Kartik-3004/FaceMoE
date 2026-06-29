@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        td,
+        th {
+            border: 0 solid black;
+        }
+
+        img {
+            padding: 5px;
+        }
+    </style>
+
+    <title>FaceMoE</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="shortcut icon" href="./static/images/jhu_web.png">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">
+                            FaceMoE: Mixture of Experts for<br>Low-Resolution Face Recognition
+                        </h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://kartik-3004.github.io/portfolio/" target="_blank">Kartik Narayan</a>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=AkEXTbIAAAAJ&hl=en" target="_blank">Vishal M. Patel</a>
+                            </span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Johns Hopkins University</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://kartik-3004.github.io/portfolio/papers/FaceMOE.pdf"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon"><i class="ai ai-arxiv"></i></span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://github.com/Kartik-3004/FaceMoE"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon"><i class="fab fa-github"></i></span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Low-resolution face recognition remains challenging due to severe degradations in probe images,
+                            domain differences between high-resolution gallery and low-resolution probe data, and catastrophic
+                            forgetting during low-resolution adaptation. FaceMoE introduces a transformer with Mixture-of-Experts
+                            feed-forward blocks and a top-k router that dynamically activates specialized experts for different
+                            semantic facial regions. This resolution-aware sparse routing improves feature extraction under
+                            degradation while preserving pretrained knowledge and scaling capacity efficiently.
+                        </p>
+                        <p>
+                            Across eleven datasets (high-quality, mixed-quality, and low-resolution benchmarks), FaceMoE
+                            outperforms prior state-of-the-art methods, including strong gains on BRIAR Protocol 3.1,
+                            IJB-S, and TinyFace.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Motivation and Contributions</h2>
+                    <img src="./static/images/intro.png" alt="FaceMoE motivation overview" border="0" height="600" width="1500">
+                    <div class="content has-text-justified">
+                        <p>
+                            The figure highlights the central low-resolution face recognition challenges that motivate FaceMoE:
+                            (1) severe degradation in probe frames causes weak and unstable identity cues, making reliable
+                            feature aggregation difficult; (2) a strong domain gap exists between high-resolution gallery images
+                            and low-resolution probe images, where models rely on different facial cues across resolutions;
+                            and (3) naive fine-tuning on low-resolution data can trigger catastrophic forgetting and reduce
+                            pretrained performance on high-quality data.
+                        </p>
+                        <ul>
+                            <li>FaceMoE introduces sparse FFN experts in transformer blocks to improve feature extraction for degraded low-resolution probes.</li>
+                            <li>A top-k router assigns tokens to specialized experts, enabling resolution-aware routing across facial regions.</li>
+                            <li>Modular sparse activation supports adaptation to low-resolution datasets while reducing catastrophic forgetting.</li>
+                            <li>These design choices lead to strong low-resolution recognition gains with minimal drop on high-quality and mixed-quality benchmarks.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">FaceMoE Architecture</h2>
+                    <div class="content has-text-justified">
+                        <img src="./static/images/archi.png" alt="FaceMoE architecture" border="0" height="500" width="1500">
+                        <p>
+                            FaceMoE replaces the standard transformer FFN with multiple expert MLPs and a learnable top-k router.
+                            Each token is routed to a sparse subset of experts, producing adaptive feature transformations that
+                            capture different facial regions and frequency characteristics. In practice, the model achieves an
+                            effective tradeoff at <b>N = 3</b> experts and <b>k = 2</b> active experts per token.
+                        </p>
+                        <p>
+                            Training uses a composite objective: face recognition loss (CosFace) plus router z-loss and load-balancing
+                            loss to stabilize routing and avoid expert collapse.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Quantitative Results</h2>
+                    <div class="content has-text-justified">
+                        <img src="./static/images/briar_ijbs_results.png" alt="BRIAR and IJB-S comparisons" border="0" height="500" width="1500">
+                        <p>
+                            Comparison against prior methods on BRIAR Protocol 3.1 and IJB-S demonstrates strong
+                            low-resolution recognition performance and robust surveillance-domain generalization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Qualitative Analysis</h2>
+                    <div class="content has-text-justified">
+                        <img src="./static/images/activation_maps.png" alt="FaceMoE expert activation maps" border="0" height="500" width="1500">
+                        <p>
+                            Expert activation maps show semantically meaningful specialization and improved routing behavior
+                            after low-resolution fine-tuning, supporting robust identity extraction from degraded faces.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container content is-max-desktop">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>Coming soon ...</code></pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop content">
+            <h5 class="title" style="font-size: 10px;">
+                Acknowledgement: Website template adapted from
+                <span class="author-block">
+                    <a href="https://nerfies.github.io/" target="_blank">Nerfies</a>
+                </span>
+            </h5>
+        </div>
+    </section>
+</body>
+</html>
