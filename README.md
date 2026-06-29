@@ -1,3 +1,20 @@
+<div align="center">
+
+# FaceMoE : Mixture of Experts for Low-Resolution Face Recognition
+<h3><strong>ECCV 2026</strong></h3>
+
+[Kartik Narayan](https://kartik-3004.github.io/portfolio/) &emsp; [Vishal M. Patel](https://engineering.jhu.edu/faculty/vishal-patel/)  
+
+Johns Hopkins University
+
+<a href=''><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
+<a href=''><img src=''></a>
+
+</div>
+
+Official implementation of **[FaceMoE : Mixture of Experts for Low-Resolution Face Recognition]()**.
+<hr />
+
 # FaceMoE
 Mixture of Experts for Low-Resolution Face Recognition
 
