@@ -14,8 +14,6 @@ Johns Hopkins University
 Official implementation of **[FaceMoE : Mixture of Experts for Low-Resolution Face Recognition](https://kartik-3004.github.io/portfolio/papers/FaceMOE.pdf)**.
 <hr />
 
-# FaceMoE
-Mixture of Experts for Low-Resolution Face Recognition
 
 This repository contains the FaceMoE training and evaluation code (Mixture-of-Experts models built on Swin-style backbones) used for experiments on low-resolution face recognition. The repo includes training scripts, configs, validation/evaluation utilities, and example shell helpers for multi-/single-GPU runs.
 
