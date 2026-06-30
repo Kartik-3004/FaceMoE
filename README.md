@@ -1,6 +1,6 @@
 <div align="center">
 
-# FaceMoE : Mixture of Experts for Low-Resolution Face Recognition
+# FaceMoE : Mixture of Experts for <br> Low-Resolution Face Recognition
 <h3><strong>ECCV 2026</strong></h3>
 
 [Kartik Narayan](https://kartik-3004.github.io/portfolio/) &emsp; [Vishal M. Patel](https://engineering.jhu.edu/faculty/vishal-patel/)  
