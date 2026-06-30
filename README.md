@@ -7,6 +7,7 @@
 
 Johns Hopkins University
 
+<a href='https://kartik-3004.github.io/FaceMoE/'><img src='https://img.shields.io/badge/Project-Page-blue'></a>
 <a href=''><img src='https://img.shields.io/badge/Paper-arXiv-red'></a>
 
 </div>
